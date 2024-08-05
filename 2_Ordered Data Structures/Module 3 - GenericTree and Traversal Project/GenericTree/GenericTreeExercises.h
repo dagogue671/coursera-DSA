@@ -338,6 +338,38 @@ std::vector<T> traverseLevels(GenericTree<T>& tree) {
 
   // ...
 
+ /*
+
+  for(TreeNode* child: rootNodePtr->childrenPtrs)
+  {
+    std::cout << "Child Ptr " << child->data << std::endl;
+  }
+
+*/
+
+  std::queue<TreeNode*> q;
+  q.push(rootNodePtr);
+
+  while(!q.empty())
+  {
+    int n = q.size();
+    while (n > 0)
+    {
+      TreeNode *curr = q.front();
+      results.push_back(curr->data);
+      q.pop();
+      
+      for (int i=0; i < curr->childrenPtrs.size(); i++)
+      {
+        q.push(curr->childrenPtrs[i]);
+      }
+
+      n--;
+    }
+  
+  }
+
+
   return results;
 }
 
